@@ -14,6 +14,7 @@ Table table;
 Camera cam;
 float centerX, centerY, centerZ;
 float camX, camY, camZ;
+Ball ball = new Ball(-1, 0, -10);
 
 void draw() {
   background(120);
@@ -23,6 +24,7 @@ void draw() {
    pushMatrix();noStroke();
    table.draw();    
    popMatrix();
+   ball.draw();
 }
  
  
