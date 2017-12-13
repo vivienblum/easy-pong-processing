@@ -15,7 +15,7 @@ final class TeamCup{
   
   void draw(){
     //4 verres
-    translate(0, hauteur/2, REDCUP_SIZE * 7/2);
+    translate(0, -hauteur/2, REDCUP_SIZE * 7/2);
     for(int j=0; j<4; j++){
       cups[j].draw();
       translate(0,0,-REDCUP_SIZE*2);
@@ -40,6 +40,6 @@ final class TeamCup{
     cups[9].draw();
     
     //Reset
-    translate(-REDCUP_SIZE * 8, -hauteur/2, 0);
+    translate(-REDCUP_SIZE * 8, hauteur/2, 0);
   }
 }

@@ -41,7 +41,7 @@ final class Table{
     box(sizeY, sizePied, sizeY);
     
     //On se remet au centre de la table (sur la table)
-    translate(-sizeX + sizeY + 50, -(sizePied/2), -((sizeZ/2)-sizeY));
+    translate(-sizeX + sizeY + 50, -(sizePied/2) - (sizeY/2), -((sizeZ/2)-sizeY));
     
     //On dessine une equipe
     teamBlue.draw();
