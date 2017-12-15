@@ -1,9 +1,13 @@
 final class Ball {
-  protected float x = 100, y = 100, z = 0, rayon = 28;
+  protected float x = 100;
+  protected float y = 100;
+  protected float  z = 0;  
 
-  protected float speedX = 1;
-  protected float speedY = -10;
-  protected float speedZ = -10;
+  protected float speedX;
+  protected float speedY;
+  protected float speedZ;
+  
+  protected float rayon = 28;
   protected float poids = 0.04;
 
   public Ball(float speedX, float speedY, float speedZ) {
