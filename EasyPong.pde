@@ -14,7 +14,7 @@ Table table;
 Camera cam;
 float centerX, centerY, centerZ;
 float camX, camY, camZ;
-Ball ball = new Ball(70, 10, 0);
+Ball ball = new Ball(30, 1, 0);
 
 void draw() {
   background(120);

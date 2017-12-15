@@ -15,13 +15,26 @@ final class Ball {
     this.speedY = speedY;
     this.speedZ = speedZ;
   }
-
-  void draw() {   
-    speedY += POIDS;
+  
+  protected void incrementTrajectory() {
+    
+    if (y > 400) {
+       speedY *= -1;
+       //speedX = 0;
+       //speedY = 0;
+       //speedZ = 0;
+    }
+    else {
+      speedY += POIDS;
+    }
+    
     x = x + speedX;
     y = y + speedY;
     z = z + speedZ;
-    
+  }
+
+  void draw() {
+    incrementTrajectory();
     translate(x, y, z);
     sphere(RAYON);
     translate(-x, -y, -z);
