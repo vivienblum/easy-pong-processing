@@ -12,8 +12,8 @@ final class Ball {
   void draw() {   
     speedX += poids;
     x = x + speedX;
-    y = y + speedY;
-    z = z + speedZ;
+    //y = y + speedY;
+    //z = z + speedZ;
     
     translate(x, y, z);
     sphere(rayon);
