@@ -1,14 +1,14 @@
 final class Ball {
-  protected float x = 100;
-  protected float y = 100;
-  protected float  z = 0;  
-
-  protected float speedX;
-  protected float speedY;
-  protected float speedZ;
+  private static final float RAYON = 28;
+  private static final float POIDS = 0.4;
   
-  protected float rayon = 28;
-  protected float poids = 0.04;
+  private float x = 100;
+  private float y = 100;
+  private float  z = 0;  
+
+  private float speedX;
+  private float speedY;
+  private float speedZ;
 
   public Ball(float speedX, float speedY, float speedZ) {
     this.speedX = speedX;
@@ -17,13 +17,13 @@ final class Ball {
   }
 
   void draw() {   
-    speedY += poids;
+    speedY += POIDS;
     x = x + speedX;
     y = y + speedY;
     z = z + speedZ;
     
     translate(x, y, z);
-    sphere(rayon);
+    sphere(RAYON);
     translate(-x, -y, -z);
   }
 }
