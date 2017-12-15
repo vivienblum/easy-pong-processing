@@ -16,17 +16,21 @@ final class Ball {
     this.speedZ = speedZ;
   }
   
-  protected void incrementTrajectory() {
-    
+  protected boolean isCollisionTable() {
     if (y > 400) {
+       return true;
+    }
+    return false;
+  }
+  
+  protected void incrementTrajectory() {
+    if (isCollisionTable()) {
        speedY *= -1;
        //speedX = 0;
        //speedY = 0;
        //speedZ = 0;
     }
-    else {
-      speedY += POIDS;
-    }
+    speedY += POIDS;
     
     x = x + speedX;
     y = y + speedY;
