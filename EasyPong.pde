@@ -41,6 +41,8 @@ void draw() {
    translate(-((SIZE_X/2) + 200), (SIZE_Y/2) + SIZE_PIED, 0);
    blue.draw();
    popMatrix();
+   ball.draw();
+   checkCollision();
 }
  
  
@@ -66,6 +68,10 @@ void setup() {
   cam = new Camera(centerX, centerY, centerZ, camX, camY, camZ);
   
   blue = new Avatar(true, "avatar-1.png");
+  //camera = new PeasyCam(this, 100);
+  //camera.setMinimumDistance(50);
+  //camera.setMaximumDistance(1000);
+  noStroke();
 } 
  
 void keyPressed() {
@@ -89,5 +95,14 @@ void oscEvent(OscMessage m) {
   }
   if(list[1].equals("accelero")){
      
+  }
+}
+
+void checkCollision(){
+  if (ball.isCollisionTable(table)) {
+    ball.setBounce();
+  }
+  if (ball.isCollisionTeamCup(table.getTeamBlue())) {
+    ball.setBounce();
   }
 }

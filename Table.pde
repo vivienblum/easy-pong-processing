@@ -90,4 +90,24 @@ final class Table{
     teamRed.draw();
     translate(sizeX/2 + 50, 0, 0);
   }
+  
+  public float getSizeX() {
+    return sizeX;  
+  }
+  
+  public float getSizeY() {
+    return sizeY;  
+  }
+  
+  public float getSizeZ() {
+    return sizeZ;  
+  }
+  
+  public TeamCup getTeamBlue() {
+    return teamBlue; 
+  }
+  
+  public TeamCup getTeamRed() {
+    return teamRed; 
+  }
 }

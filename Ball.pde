@@ -16,20 +16,27 @@ final class Ball {
     this.speedZ = speedZ;
   }
   
-  protected boolean isCollisionTable() {
-    if (y > 400) {
-       return true;
+  public boolean isCollisionTable(Table table) {
+    if (x - RAYON < table.getX() + table.getSizeX()/2 && x + RAYON > table.getX() - table.getSizeX()/2) {
+      if (z - RAYON < table.getZ() + table.getSizeZ()/2 && z + RAYON > table.getZ() - table.getSizeZ()/2) {
+        if (y - RAYON < table.getY() + table.getSizeY()/2 && y + RAYON > table.getY() - table.getSizeY()/2) {
+          return true;
+        }
+      }
     }
     return false;
   }
   
+  public boolean isCollisionTeamCup(TeamCup teamCup) {
+   
+    return false;
+  }
+  
+  public void setBounce() {
+     speedY *= -1;
+  }
+  
   protected void incrementTrajectory() {
-    if (isCollisionTable()) {
-       speedY *= -1;
-       //speedX = 0;
-       //speedY = 0;
-       //speedZ = 0;
-    }
     speedY += POIDS;
     
     x = x + speedX;

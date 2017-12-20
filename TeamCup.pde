@@ -42,4 +42,8 @@ final class TeamCup{
     //Reset
     translate(-REDCUP_SIZE * 8, hauteur/2, 0);
   }
+  
+  public RedCup[] getCups() {
+   return cups; 
+  }
 }
