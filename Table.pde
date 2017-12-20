@@ -51,27 +51,35 @@ final class Table{
     translate(sizeX/2 + 50, 0, 0);
   }
   
-  float getX() {
+  public float getX() {
     return posX;  
   }
   
-  float getY() {
+  public float getY() {
     return posY;  
   }
   
-  float getZ() {
+  public float getZ() {
     return posZ;  
   }
   
-  float getSizeX() {
+  public float getSizeX() {
     return sizeX;  
   }
   
-  float getSizeY() {
+  public float getSizeY() {
     return sizeY;  
   }
   
-  float getSizeZ() {
+  public float getSizeZ() {
     return sizeZ;  
+  }
+  
+  public TeamCup getTeamBlue() {
+    return teamBlue; 
+  }
+  
+  public TeamCup getTeamRed() {
+    return teamRed; 
   }
 }

@@ -27,14 +27,16 @@ final class Ball {
     return false;
   }
   
+  public boolean isCollisionTeamCup(TeamCup teamCup) {
+   
+    return false;
+  }
+  
   public void setBounce() {
      speedY *= -1;
   }
   
   protected void incrementTrajectory() {
-    //if (isCollisionTable()) {
-      // speedY *= -1;
-   // }
     speedY += POIDS;
     
     x = x + speedX;

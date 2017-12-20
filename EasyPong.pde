@@ -48,7 +48,7 @@ void setup() {
   
   table = new Table(centerX, centerY, centerZ, SIZE_X, SIZE_Y, SIZE_Z);
   
-  ball = new Ball(30, 1, 0);
+  ball = new Ball(100, 30, 0);
   
   light = new Lights(0,0,0);
   room = new Room();
@@ -88,6 +88,9 @@ void oscEvent(OscMessage m) {
 
 void checkCollision(){
   if (ball.isCollisionTable(table)) {
+    ball.setBounce();
+  }
+  if (ball.isCollisionTeamCup(table.getTeamBlue())) {
     ball.setBounce();
   }
 }
