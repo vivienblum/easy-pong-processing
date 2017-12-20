@@ -31,6 +31,7 @@ void draw() {
    room.draw();
    popMatrix();
    ball.draw();
+   checkCollision();
 }
  
  
@@ -86,5 +87,7 @@ void oscEvent(OscMessage m) {
 }
 
 void checkCollision(){
-  ball.isCollisionTable(table);
+  if (ball.isCollisionTable(table)) {
+    ball.setBounce();
+  }
 }
