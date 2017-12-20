@@ -1,8 +1,5 @@
 final class Table{
   
-  private float posX;
-  private float posY;
-  private float posZ; 
   private float sizeX; 
   private float sizeY; 
   private float sizeZ; 
@@ -10,10 +7,7 @@ final class Table{
   private TeamCup teamBlue;
   private TeamCup teamRed;
   
-  public Table(float x, float y, float z, float sX, float sY, float sZ){
-    posX = x;
-    posY = y;
-    posZ = z;
+  public Table(float sX, float sY, float sZ){
     sizeX = sX;
     sizeY = sY;
     sizeZ = sZ;
@@ -23,8 +17,6 @@ final class Table{
   
   void draw(){
     fill(150,150,150);
-    //On se met au centre de la table
-    translate(posX, posY, posZ);
     shininess(8);
     PImage img = loadImage("wood.jpg");
     //Haut table

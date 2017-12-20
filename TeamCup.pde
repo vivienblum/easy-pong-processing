@@ -1,5 +1,5 @@
 final class TeamCup{
-  private static final float REDCUP_SIZE = 40;
+  private static final float REDCUP_SIZE = 45;
   private RedCup cups[];
   private int numCup;
   private float hauteur;

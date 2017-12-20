@@ -11,7 +11,7 @@ final class RedCup{
   
   void draw(){
     rotateX(-PI/2);
-    drawCylinder(30, radius, radius - 10, hauteur);
+    drawCylinder(30, radius, radius - 15, hauteur);
     rotateX(PI/2);
   }
   
