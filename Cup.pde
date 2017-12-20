@@ -29,6 +29,17 @@ final class RedCup{
     }
     endShape(CLOSE);
     
+    //beer
+    PImage img = loadImage("beer.jpg");
+    fill(255,189,48);
+    beginShape();
+    for (int i = 0; i < sides; i++) {
+        float x = cos( radians( i * angle ) ) * (r2+3*r1)/4;
+        float y = sin( radians( i * angle ) ) * (r2+3*r1)/4;
+        vertex( x, y, -halfHeight/2);
+    }
+    endShape(CLOSE);
+    
     // draw exterieur
     fill(255,0,0);
     beginShape(TRIANGLE_STRIP);

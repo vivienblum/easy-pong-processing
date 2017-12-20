@@ -10,7 +10,7 @@ final class Table{
   private TeamCup teamBlue;
   private TeamCup teamRed;
   
-  public Table(float x, float y, float z, float sX, float sY, float sZ, PApplet a){
+  public Table(float x, float y, float z, float sX, float sY, float sZ){
     posX = x;
     posY = y;
     posZ = z;
@@ -30,18 +30,17 @@ final class Table{
     box(sizeX, sizeY, sizeZ);
     
     //On dessine les pieds    
-    float sizePied = 500;    
-    translate(-((sizeX/2)-sizeY), (sizePied/2), (sizeZ/2)-sizeY);
-    box(sizeY, sizePied, sizeY);
+    translate(-((sizeX/2)-sizeY), (SIZE_PIED/2), (sizeZ/2)-sizeY);
+    box(sizeY, SIZE_PIED, sizeY);
     translate(0,0, -(sizeZ - (2 * sizeY)));
-    box(sizeY, sizePied, sizeY);
+    box(sizeY, SIZE_PIED, sizeY);
     translate(sizeX - (2 * sizeY),0,0);
-    box(sizeY, sizePied, sizeY);
+    box(sizeY, SIZE_PIED, sizeY);
     translate(0,0, sizeZ - (2 * sizeY));
-    box(sizeY, sizePied, sizeY);
+    box(sizeY, SIZE_PIED, sizeY);
     
     //On se remet au centre de la table (sur la table)
-    translate(-sizeX + sizeY + 50, -(sizePied/2) - (sizeY/2), -((sizeZ/2)-sizeY));
+    translate(-sizeX + sizeY + 50, -(SIZE_PIED/2) - (sizeY/2), -((sizeZ/2)-sizeY));
     
     //On dessine une equipe
     teamBlue.draw();
@@ -49,5 +48,6 @@ final class Table{
     translate(sizeX - 100, 0, 0);
     rotateY(PI);
     teamRed.draw();
+    translate(sizeX/2 + 50, 0, 0);
   }
 }
