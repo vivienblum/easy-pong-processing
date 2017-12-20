@@ -20,6 +20,7 @@ PeasyCam camera;
 Camera cam;
 float centerX, centerY, centerZ;
 float camX, camY, camZ;
+Ball ball;
 
 void draw() {
   background(120);
@@ -29,6 +30,7 @@ void draw() {
    table.draw();    
    room.draw();
    popMatrix();
+   ball.draw();
 }
  
  
@@ -44,13 +46,15 @@ void setup() {
   smooth();
   
   table = new Table(centerX, centerY, centerZ, SIZE_X, SIZE_Y, SIZE_Z);
+  
+  ball = new Ball(30, 1, 0);
+  
   light = new Lights(0,0,0);
   room = new Room();
   camX = -800;
   camY = 0;
   camZ = 0;
   cam = new Camera(centerX, centerY, centerZ, camX, camY, camZ);
-  
   camera = new PeasyCam(this, 100);
   camera.setMinimumDistance(50);
   camera.setMaximumDistance(1000);
