@@ -50,4 +50,28 @@ final class Table{
     teamRed.draw();
     translate(sizeX/2 + 50, 0, 0);
   }
+  
+  float getX() {
+    return posX;  
+  }
+  
+  float getY() {
+    return posY;  
+  }
+  
+  float getZ() {
+    return posZ;  
+  }
+  
+  float getSizeX() {
+    return sizeX;  
+  }
+  
+  float getSizeY() {
+    return sizeY;  
+  }
+  
+  float getSizeZ() {
+    return sizeZ;  
+  }
 }

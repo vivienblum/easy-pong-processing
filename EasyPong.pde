@@ -55,9 +55,9 @@ void setup() {
   camY = 0;
   camZ = 0;
   cam = new Camera(centerX, centerY, centerZ, camX, camY, camZ);
-  camera = new PeasyCam(this, 100);
-  camera.setMinimumDistance(50);
-  camera.setMaximumDistance(1000);
+  //camera = new PeasyCam(this, 100);
+  //camera.setMinimumDistance(50);
+  //camera.setMaximumDistance(1000);
   noStroke();
 } 
  
@@ -83,4 +83,8 @@ void oscEvent(OscMessage m) {
   if(list[1].equals("accelero")){
      
   }
+}
+
+void checkCollision(){
+  ball.isCollisionTable(table);
 }
