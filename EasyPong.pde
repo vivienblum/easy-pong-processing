@@ -2,9 +2,6 @@ import netP5.*;
 import oscP5.*;
 import peasy.*;
 
- 
-
-
 private static final float SIZE_X = 1600; //Profondeur
 private static final float SIZE_Y = 45; //Hauteur
 private static final float SIZE_Z = 900; //Largeur 
@@ -31,13 +28,12 @@ void draw() {
    table.draw();    
    room.draw();
    popMatrix();
-   ball.draw();
+   if(ball!=null)ball.draw();
 }
  
  
 void setup() {
-  //osc = new OscP5(this, 8000);
-  //addr = new NetAddress("192.168.43.131", 8000);  
+  osc = new OscP5(this, 8000);
   
   centerX = width/2;
   centerY = height/2;
@@ -48,7 +44,7 @@ void setup() {
   
   table = new Table(centerX, centerY, centerZ, SIZE_X, SIZE_Y, SIZE_Z);
   
-  ball = new Ball(30, 1, 0);
+ // ball = new Ball(30, 1, 0);
   
   light = new Lights(0,0,0);
   room = new Room();
@@ -72,12 +68,14 @@ void keyPressed() {
 }
  
 void oscEvent(OscMessage m) {
-  //print(m+ " ");
+ // print(m+ " " + "\n");
   String[] list = split(m+"", '|');
-  if(list[1].equals("gyro")){
+  
+  if(list[1].contains("gyro")){
    
   }
-  if(list[1].equals("accelero")){
-     
+  if(list[1].contains("accelero")){
+     String[] data = split(list[1]+"", ':');
+     if(ball==null)ball = new Ball(30, Float.parseFloat(data[1]), 0);
   }
 }
