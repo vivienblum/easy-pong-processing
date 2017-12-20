@@ -31,7 +31,9 @@ final class RedCup{
     
     //beer
     PImage img = loadImage("beer.jpg");
-    fill(255,189,48);
+    noStroke();
+    shininess(100);
+    fill(255,200,100);
     beginShape();
     for (int i = 0; i < sides; i++) {
         float x = cos( radians( i * angle ) ) * (r2+3*r1)/4;
@@ -66,6 +68,7 @@ final class RedCup{
         vertex( x2, y2, halfHeight);
     }
     endShape(CLOSE);
+    stroke(0);
   } 
   
 }
