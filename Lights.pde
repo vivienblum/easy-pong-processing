@@ -10,7 +10,8 @@ final class Lights{
   }
   
   void draw(){
-    directionalLight(126, 126, 126, 0, 0, -1);
-    ambientLight(102, 102, 102);
+    directionalLight(100, 100, 100, 0, 0, -1);
+    directionalLight(100, 100, 100, 0, 0, 1);
+    ambientLight(180, 180, 180);
   }
 }

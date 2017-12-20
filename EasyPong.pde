@@ -4,11 +4,12 @@ import peasy.*;
 
  
 
-private static final float SIZE_X = 2000; //Profondeur
+
+private static final float SIZE_X = 1600; //Profondeur
 private static final float SIZE_Y = 45; //Hauteur
-private static final float SIZE_Z = 1000; //Largeur 
+private static final float SIZE_Z = 900; //Largeur 
 private static final float SIZE_PIED = 500;  
-private static final float SIZE_ROOM = 7000;  
+private static final float SIZE_ROOM = 4000;   
  
 OscP5 osc;
 NetAddress addr;
@@ -23,9 +24,9 @@ float camX, camY, camZ;
 Ball ball;
 
 void draw() {
-  background(120);
+   background(120);
    light.draw();
-   //cam.draw();
+   cam.draw();
    pushMatrix();
    table.draw();    
    room.draw();
