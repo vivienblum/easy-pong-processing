@@ -1,7 +1,5 @@
 final class TeamCup{
-  private static final float REDCUP_SIZE = 45;
   private RedCup cups[];
-  private float hauteur;
   private float x;
   private boolean team;
   private color col;
@@ -10,7 +8,6 @@ final class TeamCup{
     team = t;
     x = abs;
     cups = new RedCup[10];
-    hauteur = 100;
     if(team){
       col = color(255,0,0);
     }
@@ -22,10 +19,10 @@ final class TeamCup{
     float posX = x, posZ = REDCUP_SIZE * 7/2;
     for(int j=0; j<4; j++){
       if(team){
-        cups[j] = new RedCup(REDCUP_SIZE, hauteur, posX, posZ, col);
+        cups[j] = new RedCup(REDCUP_SIZE, posX, posZ, col);
       }
       else{
-        cups[j] = new RedCup(REDCUP_SIZE, hauteur, -posX, -posZ, col);
+        cups[j] = new RedCup(REDCUP_SIZE, -posX, -posZ, col);
       }
       posZ += -REDCUP_SIZE*2;
     }
@@ -35,10 +32,10 @@ final class TeamCup{
     //3 verres
     for(int j=4; j<7; j++){
       if(team){
-        cups[j] = new RedCup(REDCUP_SIZE, hauteur, posX, posZ, col);
+        cups[j] = new RedCup(REDCUP_SIZE, posX, posZ, col);
       }
       else{
-        cups[j] = new RedCup(REDCUP_SIZE, hauteur, -posX, -posZ, col);
+        cups[j] = new RedCup(REDCUP_SIZE, -posX, -posZ, col);
       }
       posZ += -REDCUP_SIZE*2;
     }
@@ -48,10 +45,10 @@ final class TeamCup{
     //2 verres
     for(int j=7; j<9; j++){
       if(team){
-        cups[j] = new RedCup(REDCUP_SIZE, hauteur, posX, posZ, col);
+        cups[j] = new RedCup(REDCUP_SIZE, posX, posZ, col);
       }
       else{
-        cups[j] = new RedCup(REDCUP_SIZE, hauteur, -posX, -posZ, col);
+        cups[j] = new RedCup(REDCUP_SIZE, -posX, -posZ, col);
       }
       posZ += -REDCUP_SIZE*2;
     }
@@ -61,16 +58,16 @@ final class TeamCup{
     //1 verres
     translate(REDCUP_SIZE * 2, 0, REDCUP_SIZE * 6/2);
     if(team){
-      cups[9] = new RedCup(REDCUP_SIZE, hauteur, posX, posZ, col);
+      cups[9] = new RedCup(REDCUP_SIZE, posX, posZ, col);
     }
     else{
-      cups[9] = new RedCup(REDCUP_SIZE, hauteur, -posX, -posZ, col);
+      cups[9] = new RedCup(REDCUP_SIZE, -posX, -posZ, col);
     }
   }
   
   void draw(){
     //4 verres
-    translate(0, -hauteur/2, REDCUP_SIZE * 7/2);
+    translate(0, -REDCUP_HEIGHT/2, REDCUP_SIZE * 7/2);
     for(int j=0; j<4; j++){
       cups[j].draw();
       translate(0,0,-REDCUP_SIZE*2);
@@ -95,7 +92,7 @@ final class TeamCup{
     cups[9].draw();
     
     //Reset
-    translate(-REDCUP_SIZE * 8, hauteur/2, 0);
+    translate(-REDCUP_SIZE * 8, REDCUP_HEIGHT/2, 0);
   }
   
   public RedCup[] getCups() {

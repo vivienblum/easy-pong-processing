@@ -2,14 +2,12 @@
 final class RedCup{
   
   private float radius;
-  private float hauteur;
   private float posX;
   private float posZ;
   private color col;
   
-  public RedCup(float r, float h, float x, float z, color c){
+  public RedCup(float r, float x, float z, color c){
     radius = r;
-    hauteur = h;
     posX = x;
     posZ = z;
     col = c;
@@ -17,7 +15,7 @@ final class RedCup{
   
   void draw(){
     rotateX(-PI/2);
-    drawCylinder(30, radius, radius - 15, hauteur);
+    drawCylinder(30, radius, radius - 15, REDCUP_HEIGHT);
     rotateX(PI/2);
   }
   
