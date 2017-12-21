@@ -83,7 +83,7 @@ final class RedCup{
   }
   
   public float getHauteur() {
-    return hauteur;
+    return REDCUP_HEIGHT;
   }
   
   public float getRadius() {
