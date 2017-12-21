@@ -42,14 +42,14 @@ void draw() {
    pushMatrix();
    red.draw();
    popMatrix();
-  // ball.draw();
-   checkCollision();
+   if(ball!=null)checkCollision();
+
 }
  
  
 void setup() {
   osc = new OscP5(this, 8000);
-  addr = new NetAddress("192.168.43.131", 8000);  
+  addr = new NetAddress("192.168.43.131", 8000); 
   
   centerX = width/2;
   centerY = height/2;
@@ -96,17 +96,16 @@ void keyPressed() {
 }
  
 void oscEvent(OscMessage m) {
-  print(m+ " " + "\n");
-  String[] list = split(m+"", '|');
+  String[] list = split(m+"", "|");
   
   if(list[1].contains("gyro")){
+    print(m +"\n");
     String[] data = split(list[1]+"", ':');
-    print(m+ " " + "\n");
-    test = Float.parseFloat(data[1])*10;
+    test = Float.parseFloat(data[1])*2;
   }
   if(list[1].contains("accelero")){
      String[] data = split(list[1]+"", ':');
-     if(ball==null)ball = new Ball(Float.parseFloat(data[1]), 1, test);
+     if(ball==null)ball = new Ball(Float.parseFloat(data[1])-30, 1, test);
   }
 }
 
