@@ -1,9 +1,9 @@
 final class Avatar{
   private boolean team;
-  private String source;
+  private PImage img;
   
   public Avatar(boolean t, String s){
-    source = s;
+    img = loadImage(s);
     team = t;
   }
   
@@ -14,7 +14,6 @@ final class Avatar{
     else{
       translate(((SIZE_X/2) + 200), (SIZE_Y/2) + SIZE_PIED, 0);
     }
-    PImage img = loadImage(source);
     noStroke();
     beginShape();
     texture(img);

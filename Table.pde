@@ -3,6 +3,7 @@ final class Table{
   private float sizeX; 
   private float sizeY; 
   private float sizeZ; 
+  private PImage img = loadImage("wood.jpg");
   
   private TeamCup teamBlue;
   private TeamCup teamRed;
@@ -18,7 +19,7 @@ final class Table{
   void draw(){
     fill(150,150,150);
     shininess(8);
-    PImage img = loadImage("wood.jpg");
+    
     //Haut table
     beginShape();
     texture(img);
