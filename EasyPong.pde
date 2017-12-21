@@ -5,6 +5,8 @@ import peasy.*;
 private static final float SIZE_X = 1600; //Profondeur
 private static final float SIZE_Y = 45; //Hauteur
 private static final float SIZE_Z = 900; //Largeur 
+private static final float REDCUP_SIZE = 45;
+private static final float REDCUP_HEIGHT = 100;
 private static final float SIZE_PIED = 500;  
 private static final float SIZE_ROOM = 4000;   
 
@@ -38,11 +40,10 @@ void draw() {
    popMatrix();
    if(ball!=null)ball.draw();
    pushMatrix();
-   translate(-((SIZE_X/2) + 200), (SIZE_Y/2) + SIZE_PIED, 0);
-   blue.draw();
+   red.draw();
    popMatrix();
-   //ball.draw();
    if(ball!=null)checkCollision();
+
 }
  
  
@@ -63,15 +64,18 @@ void setup() {
  // ball = new Ball(30, 1, 0);
 
   table = new Table(SIZE_X, SIZE_Y, SIZE_Z);
- 
+
+  
+  ball = new Ball(30, 1, 0);  
   light = new Lights(0,0,0);
   room = new Room();
   camX = -800;
-  camY = 0;
+  camY = -300;
   camZ = 0;
   cam = new Camera(centerX, centerY, centerZ, camX, camY, camZ);
   
-  blue = new Avatar(true, "avatar-1.png");
+  //blue = new Avatar(true, "avatar-1.png");
+  red = new Avatar(false, "avatar-1.png");
   //camera = new PeasyCam(this, 100);
   //camera.setMinimumDistance(50);
   //camera.setMaximumDistance(1000);
@@ -106,10 +110,20 @@ void oscEvent(OscMessage m) {
 }
 
 void checkCollision(){
-  if (ball.isCollisionTable(table)) {
-    ball.setBounce();
-  }
-  if (ball.isCollisionTeamCup(table.getTeamBlue())) {
-    ball.setBounce();
-  }
+  if (ball != null) {
+    if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z)) {
+      ball.setBounce();
+    }
+    if (ball.isCollisionTeamCup(table.getTeamBlue())) {
+      ball.setBounce();
+    }
+    if (ball.isCollisionTeamCup(table.getTeamRed())) {
+      ball.setBounce();
+    }
+    print("Running\n");
+    if (ball.isOut(SIZE_ROOM)) {
+      print("Fin\n");
+      ball = null;
+    }
+  }  
 }

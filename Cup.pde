@@ -2,16 +2,20 @@
 final class RedCup{
   
   private float radius;
-  private float hauteur;
+  private float posX;
+  private float posZ;
+  private color col;
   
-  public RedCup(float r, float h){
+  public RedCup(float r, float x, float z, color c){
     radius = r;
-    hauteur = h;
+    posX = x;
+    posZ = z;
+    col = c;
   }
   
   void draw(){
     rotateX(-PI/2);
-    drawCylinder(30, radius, radius - 15, hauteur);
+    drawCylinder(30, radius, radius - 15, REDCUP_HEIGHT);
     rotateX(PI/2);
   }
   
@@ -30,7 +34,6 @@ final class RedCup{
     endShape(CLOSE);
     
     //beer
-    PImage img = loadImage("beer.jpg");
     noStroke();
     shininess(100);
     fill(255,200,100);
@@ -43,7 +46,7 @@ final class RedCup{
     endShape(CLOSE);
     
     // draw exterieur
-    fill(255,0,0);
+    fill(col);
     beginShape(TRIANGLE_STRIP);
     for (int i = 0; i < sides + 1; i++) {
         float x1 = cos( radians( i * angle ) ) * r1;
