@@ -2,14 +2,13 @@ import netP5.*;
 import oscP5.*;
 import peasy.*;
 
- 
-
-
 private static final float SIZE_X = 1600; //Profondeur
 private static final float SIZE_Y = 45; //Hauteur
 private static final float SIZE_Z = 900; //Largeur 
 private static final float SIZE_PIED = 500;  
 private static final float SIZE_ROOM = 4000;   
+
+private float test = 0;
  
 OscP5 osc;
 NetAddress addr;
@@ -37,10 +36,11 @@ void draw() {
    pushMatrix();
    room.draw();
    popMatrix();
+   if(ball!=null)ball.draw();
    pushMatrix();
    blue.draw();
    popMatrix();
-   ball.draw();
+  // ball.draw();
    checkCollision();
 }
  
@@ -56,7 +56,13 @@ void setup() {
   fullScreen(P3D);
   smooth();
   
+
+  //table = new Table(centerX, centerY, centerZ, SIZE_X, SIZE_Y, SIZE_Z);
+  
+ // ball = new Ball(30, 1, 0);
+
   table = new Table(SIZE_X, SIZE_Y, SIZE_Z);
+
   
   ball = new Ball(30, 1, 0);  
   light = new Lights(0,0,0);
@@ -87,13 +93,17 @@ void keyPressed() {
 }
  
 void oscEvent(OscMessage m) {
-  //print(m+ " ");
+  print(m+ " " + "\n");
   String[] list = split(m+"", '|');
-  if(list[1].equals("gyro")){
-   
+  
+  if(list[1].contains("gyro")){
+    String[] data = split(list[1]+"", ':');
+    print(m+ " " + "\n");
+    test = Float.parseFloat(data[1])*10;
   }
-  if(list[1].equals("accelero")){
-     
+  if(list[1].contains("accelero")){
+     String[] data = split(list[1]+"", ':');
+     if(ball==null)ball = new Ball(Float.parseFloat(data[1]), 1, test);
   }
 }
 
