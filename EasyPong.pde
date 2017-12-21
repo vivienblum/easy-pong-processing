@@ -115,4 +115,7 @@ void checkCollision(){
   if (ball.isCollisionTeamCup(table.getTeamBlue())) {
     ball.setBounce();
   }
+  if (ball.isCollisionTeamCup(table.getTeamRed())) {
+    ball.setBounce();
+  }
 }
