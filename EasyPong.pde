@@ -10,6 +10,10 @@ private static final float REDCUP_HEIGHT = 100;
 private static final float SIZE_PIED = 500;  
 private static final float SIZE_ROOM = 4000;   
 
+private static final float LIMIT_CAM_X = 1600;   
+private static final float LIMIT_CAM_Y = 1000;   
+private static final float BASE_CAM_Y = 600;   
+
 private float test = 0;
  
 OscP5 osc;
@@ -21,7 +25,6 @@ Room room;
 PeasyCam camera;
 Camera cam;
 float centerX, centerY, centerZ;
-float camX, camY, camZ;
 Ball ball;
 Avatar blue;
 Avatar red;
@@ -29,9 +32,9 @@ Avatar red;
 void draw() {
    background(120);
    light.draw();
-   cam.draw();
    //On se met au centre de la table
    translate(centerX, centerY, centerZ);
+   cam.draw();
    pushMatrix();
    table.draw();   
    popMatrix(); 
@@ -41,6 +44,7 @@ void draw() {
    pushMatrix();
    red.draw();
    popMatrix();
+
    if (ball != null) {
      ball.draw();
      checkCollision();
@@ -50,15 +54,17 @@ void draw() {
  
 void setup() {
   osc = new OscP5(this, 8000);
-  addr = new NetAddress("192.168.43.131", 8000); 
+  addr = new NetAddress("192.168.43.131", 8000);  
+  noStroke();
   
-  centerX = width/2;
-  centerY = height/2;
+  centerX = (width/2) - (SIZE_X/2);
+  centerY = (height/2) - SIZE_PIED ;
   centerZ = 0;
  
   fullScreen(P3D);
   smooth();
   
+
 
   //table = new Table(centerX, centerY, centerZ, SIZE_X, SIZE_Y, SIZE_Z);
   
@@ -68,32 +74,29 @@ void setup() {
 
   
   ball = new Ball(12, 5, 0);  
+
+  table = new Table(SIZE_X, SIZE_Y, SIZE_Z);  
+  //ball = new Ball(15, 1, 0);  
+ 
+  //ball = new Ball(30, 1, 0);  
+
+
   light = new Lights(0,0,0);
   room = new Room();
-  camX = -800;
-  camY = -300;
-  camZ = 0;
-  cam = new Camera(centerX, centerY, centerZ, camX, camY, camZ);
+  cam = new Camera(centerX, centerY, centerZ, -LIMIT_CAM_X, -BASE_CAM_Y, 0, true);
   
-  //blue = new Avatar(true, "avatar-1.png");
-  red = new Avatar(false, "avatar-1.png");
-  //camera = new PeasyCam(this, 100);
-  //camera.setMinimumDistance(50);
-  //camera.setMaximumDistance(1000);
-  noStroke();
+  blue = new Avatar(true, "avatar-1.png");
+  red = new Avatar(false, "avatar-2.png");  
 } 
  
 void keyPressed() {
   if(key == 'a'){
-    camY += 10;
+    cam.switchTeam();
   }
   else{
-    camY -= 10;
+    cam.moveOnPlay();    
   }
   //osc.send(m,"192.168.43.131",8000);
-  centerY += 10;
-  cam.moveEye(centerX,centerY,centerZ);
-  cam.movePos(camX,camY,camZ);
 }
  
 void oscEvent(OscMessage m) {
@@ -106,7 +109,8 @@ void oscEvent(OscMessage m) {
   }
   if(list[1].contains("accelero")){
      String[] data = split(list[1]+"", ':');
-     if(ball==null)ball = new Ball(Float.parseFloat(data[1])-30, 1, test);
+     if(ball==null)ball = new Ball(Float.parseFloat(data[1])-20, 1, -test);
+     test=0;
   }
 }
 
