@@ -11,8 +11,8 @@ final class Table{
     sizeX = sX;
     sizeY = sY;
     sizeZ = sZ;
-    teamBlue = new TeamCup(0);
-    teamRed = new TeamCup(1);
+    teamBlue = new TeamCup(false, -(sizeX-100)/2);
+    teamRed = new TeamCup(true, (sizeX-100)/2);
   }
   
   void draw(){
