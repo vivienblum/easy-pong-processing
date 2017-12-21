@@ -34,6 +34,25 @@ final class Ball {
     return false;
   }
   
+  public boolean isInTeamCup(TeamCup teamCup) {
+    for (RedCup cup : teamCup.getCups()) {
+      if (isInCup(cup)) return true;
+    }
+    return false;
+  }
+  
+  protected boolean isInCup(RedCup cup) {
+    if (y - RAYON > -SIZE_Y/2 - cup.getHauteur() && y - RAYON < -cup.getHauteur()) {
+      
+      double distance = Math.sqrt(Math.pow((cup.getPosX() - x/* + RAYON*/), 2) + Math.pow((cup.getPosZ() - z/* + RAYON*/), 2));
+      print("DISTANCE : "+distance+" RADIUS : "+cup.getRadius()+"\n");
+      if (distance < cup.getRadius()) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   public boolean isOut(float size) {
     if (x - RAYON > size/2 || x + RAYON < -size/2 || y - RAYON > size/2 || y + RAYON < -size/2 || z - RAYON > size/2 || z + RAYON < -size/2) {
       return true;

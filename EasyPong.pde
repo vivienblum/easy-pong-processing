@@ -48,8 +48,7 @@ void draw() {
    pushMatrix();
    blue.draw();
    popMatrix();
-  // ball.draw();
-   checkCollision();
+   if(ball!=null)checkCollision();
 }
  
  
@@ -64,9 +63,10 @@ void setup() {
  
   fullScreen(P3D);
   smooth();
-
+  
   table = new Table(SIZE_X, SIZE_Y, SIZE_Z);  
-  ball = new Ball(30, 1, 0);  
+  ball = new Ball(15, 1, 0);  
+  
   light = new Lights(0,0,0);
   room = new Room();
   cam = new Camera(centerX, centerY, centerZ, -LIMIT_CAM_X, -BASE_CAM_Y, 0, true);
@@ -86,17 +86,16 @@ void keyPressed() {
 }
  
 void oscEvent(OscMessage m) {
-  print(m+ " " + "\n");
-  String[] list = split(m+"", '|');
+  String[] list = split(m+"", "|");
   
   if(list[1].contains("gyro")){
+    print(m +"\n");
     String[] data = split(list[1]+"", ':');
-    print(m+ " " + "\n");
-    test = Float.parseFloat(data[1])*10;
+    test = Float.parseFloat(data[1])*2;
   }
   if(list[1].contains("accelero")){
      String[] data = split(list[1]+"", ':');
-     if(ball==null)ball = new Ball(Float.parseFloat(data[1]), 1, test);
+     if(ball==null)ball = new Ball(Float.parseFloat(data[1])-30, 1, test);
   }
 }
 
@@ -105,16 +104,24 @@ void checkCollision(){
     if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z)) {
       ball.setBounce();
     }
-    if (ball.isCollisionTeamCup(table.getTeamBlue())) {
+    else if (ball.isCollisionTeamCup(table.getTeamBlue())) {
       ball.setBounce();
     }
-    if (ball.isCollisionTeamCup(table.getTeamRed())) {
+    else if (ball.isCollisionTeamCup(table.getTeamRed())) {
       ball.setBounce();
     }
-    //print("Running\n");
-    if (ball.isOut(SIZE_ROOM)) {
+    else if (ball.isOut(SIZE_ROOM)) {
       print("Fin\n");
       ball = null;
     }
+    else if (ball.isInTeamCup(table.getTeamRed())) {
+      print("In\n");
+      ball = null;
+    }
+    else if (ball.isInTeamCup(table.getTeamBlue())) {
+      print("In\n");
+      ball = null;
+    }
+    print("Running\n");
   }  
 }
