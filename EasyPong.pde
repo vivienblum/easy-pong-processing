@@ -38,12 +38,13 @@ void draw() {
    pushMatrix();
    room.draw();
    popMatrix();
-   if(ball!=null)ball.draw();
    pushMatrix();
    red.draw();
    popMatrix();
-   if(ball!=null)checkCollision();
-
+   if (ball != null) {
+     ball.draw();
+     checkCollision();
+   }
 }
  
  
@@ -115,26 +116,26 @@ void checkCollision(){
       ball.setBounce();
     }
     else if (ball.isInTeamCup(table.getTeamRed())) {
-      print("In\n");
+      print("In1\n");
+      //ball.stop();
+      //ball.setBounceX();
       ball = null;
     }
     else if (ball.isInTeamCup(table.getTeamBlue())) {
-      print("In\n");
+      print("In2\n");
       ball = null;
     }
-    else if (ball.isCollisionTeamCup(table.getTeamBlue())) {
+    /*else if (ball.isCollisionTeamCup(table.getTeamBlue())) {
       ball.setBounceX();
      // ball.speedLow(0.2);
     }
     else if (ball.isCollisionTeamCup(table.getTeamRed())) {
       ball.setBounceX();
       //ball.speedLow(0.2);
-    }
+    }*/
     else if (ball.isOut(SIZE_ROOM)) {
       print("Fin\n");
       ball = null;
     }
-    
-    print("Running\n");
   }  
 }
