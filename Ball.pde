@@ -24,14 +24,6 @@ final class Ball {
         }
       }
     }
-    
-   /* if (x - RAYON < table.getX() + table.getSizeX()/2 && x + RAYON > table.getX() - table.getSizeX()/2) {
-      if (z - RAYON < table.getZ() + table.getSizeZ()/2 && z + RAYON > table.getZ() - table.getSizeZ()/2) {
-        if (y - RAYON < table.getY() + table.getSizeY()/2 && y + RAYON > table.getY() - table.getSizeY()/2) {
-          return true;
-        }
-      }
-    }*/
     return false;
   }
   
@@ -43,7 +35,7 @@ final class Ball {
   }
   
   public boolean isOut(float size) {
-    if (x - RAYON > size/2 || x + RAYON < -size/2 || y - RAYON > 0 || y + RAYON < -size || z - RAYON > size/2 || z + RAYON < -size/2) {
+    if (x - RAYON > size/2 || x + RAYON < -size/2 || y - RAYON > size/2 || y + RAYON < -size/2 || z - RAYON > size/2 || z + RAYON < -size/2) {
       return true;
     }
     return false;
