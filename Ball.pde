@@ -34,6 +34,17 @@ final class Ball {
     return false;
   }
   
+  public boolean isInTeamCup(TeamCup teamCup) {
+    for (RedCup cup : teamCup.getCups()) {
+      if (isInCup(cup)) return true;
+    }
+    return false;
+  }
+  
+  protected boolean isInCup(RedCup cup) {
+    return false;
+  }
+  
   public boolean isOut(float size) {
     if (x - RAYON > size/2 || x + RAYON < -size/2 || y - RAYON > size/2 || y + RAYON < -size/2 || z - RAYON > size/2 || z + RAYON < -size/2) {
       return true;

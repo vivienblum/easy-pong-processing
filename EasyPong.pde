@@ -64,7 +64,7 @@ void setup() {
   table = new Table(SIZE_X, SIZE_Y, SIZE_Z);
 
   
-  ball = new Ball(30, 1, 0);  
+  ball = new Ball(15, 1, 0);  
   light = new Lights(0,0,0);
   room = new Room();
   camX = -800;
@@ -117,6 +117,14 @@ void checkCollision(){
     }
     if (ball.isCollisionTeamCup(table.getTeamRed())) {
       ball.setBounce();
+    }
+    if (ball.isInCup(table.getTeamBlue())) {
+      print("In\n");
+      ball = null;
+    }
+    if (ball.isInCup(table.getTeamRed())) {
+      print("In\n");
+      ball = null;
     }
     print("Running\n");
     if (ball.isOut(SIZE_ROOM)) {
