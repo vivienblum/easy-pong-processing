@@ -47,7 +47,9 @@ final class Ball {
   void draw() {
     incrementTrajectory();
     translate(x, y, z);
+    noStroke();
     sphere(RAYON);
+    stroke(0);
     translate(-x, -y, -z);
   }
 }
