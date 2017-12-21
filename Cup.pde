@@ -74,4 +74,20 @@ final class RedCup{
     stroke(0);
   } 
   
+  public float getPosX() {
+    return posX;
+  }
+  
+  public float getPosZ() {
+    return posZ;
+  }
+  
+  public float getHauteur() {
+    return REDCUP_HEIGHT;
+  }
+  
+  public float getRadius() {
+    return radius;
+  }
+  
 }
