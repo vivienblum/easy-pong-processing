@@ -109,13 +109,21 @@ void oscEvent(OscMessage m) {
 }
 
 void checkCollision(){
-  if (ball.isCollisionTable(table)) {
-    ball.setBounce();
-  }
-  if (ball.isCollisionTeamCup(table.getTeamBlue())) {
-    ball.setBounce();
-  }
-  if (ball.isCollisionTeamCup(table.getTeamRed())) {
-    ball.setBounce();
-  }
+  if (ball != null) {
+    if (ball.isCollisionTable(table)) {
+      ball.setBounce();
+    }
+    if (ball.isCollisionTeamCup(table.getTeamBlue())) {
+      ball.setBounce();
+    }
+    if (ball.isCollisionTeamCup(table.getTeamRed())) {
+      ball.setBounce();
+    }
+    print("Running\n");
+    if (ball.isOut(SIZE_ROOM)) {
+      print("Fin\n");
+      
+      ball = null;
+    }
+  }  
 }

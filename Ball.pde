@@ -31,7 +31,13 @@ final class Ball {
     for (RedCup cup : teamCup.getCups()) {
       
     }
-    // fruit is an element of the `fruits` array.
+    return false;
+  }
+  
+  public boolean isOut(float size) {
+    if (x - RAYON > size/2 || x + RAYON < -size/2 || y - RAYON > 0 || y + RAYON < -size || z - RAYON > size/2 || z + RAYON < -size/2) {
+      return true;
+    }
     return false;
   }
   
