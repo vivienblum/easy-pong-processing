@@ -110,7 +110,7 @@ void oscEvent(OscMessage m) {
 
 void checkCollision(){
   if (ball != null) {
-    if (ball.isCollisionTable(table)) {
+    if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z)) {
       ball.setBounce();
     }
     if (ball.isCollisionTeamCup(table.getTeamBlue())) {
@@ -122,7 +122,6 @@ void checkCollision(){
     print("Running\n");
     if (ball.isOut(SIZE_ROOM)) {
       print("Fin\n");
-      
       ball = null;
     }
   }  

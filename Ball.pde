@@ -16,8 +16,16 @@ final class Ball {
     this.speedZ = speedZ;
   }
   
-  public boolean isCollisionTable(Table table) {
-    /*if (x - RAYON < table.getX() + table.getSizeX()/2 && x + RAYON > table.getX() - table.getSizeX()/2) {
+  public boolean isCollisionTable(float profondeur, float hauteur, float largeur) {
+   if (x - RAYON < profondeur/2 && x + RAYON > -profondeur/2) {
+      if (z - RAYON < largeur/2 && z + RAYON > -largeur/2) {
+        if (y - RAYON < hauteur/2 && y + RAYON > -hauteur/2) {
+          return true;
+        }
+      }
+    }
+    
+   /* if (x - RAYON < table.getX() + table.getSizeX()/2 && x + RAYON > table.getX() - table.getSizeX()/2) {
       if (z - RAYON < table.getZ() + table.getSizeZ()/2 && z + RAYON > table.getZ() - table.getSizeZ()/2) {
         if (y - RAYON < table.getY() + table.getSizeY()/2 && y + RAYON > table.getY() - table.getSizeY()/2) {
           return true;
