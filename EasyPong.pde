@@ -66,7 +66,7 @@ void setup() {
   table = new Table(SIZE_X, SIZE_Y, SIZE_Z);
 
   
-  ball = new Ball(30, 1, 0);  
+  //ball = new Ball(30, 1, 0);  
   light = new Lights(0,0,0);
   room = new Room();
   camX = -800;
@@ -105,7 +105,8 @@ void oscEvent(OscMessage m) {
   }
   if(list[1].contains("accelero")){
      String[] data = split(list[1]+"", ':');
-     if(ball==null)ball = new Ball(Float.parseFloat(data[1])-30, 1, test);
+     if(ball==null)ball = new Ball(Float.parseFloat(data[1])-20, 1, -test);
+     test=0;
   }
 }
 
@@ -120,7 +121,6 @@ void checkCollision(){
     if (ball.isCollisionTeamCup(table.getTeamRed())) {
       ball.setBounce();
     }
-    print("Running\n");
     if (ball.isOut(SIZE_ROOM)) {
       print("Fin\n");
       ball = null;
