@@ -42,6 +42,14 @@ final class Ball {
   }
   
   protected boolean isInCup(RedCup cup) {
+    if (y - RAYON > -SIZE_Y/2 - cup.getHauteur() && y - RAYON < -cup.getHauteur()) {
+      
+      double distance = Math.sqrt(Math.pow((cup.getPosX() - x/* + RAYON*/), 2) + Math.pow((cup.getPosZ() - z/* + RAYON*/), 2));
+      print("DISTANCE : "+distance+" RADIUS : "+cup.getRadius()+"\n");
+      if (distance < cup.getRadius()) {
+        return true;
+      }
+    }
     return false;
   }
   

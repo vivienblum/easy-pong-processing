@@ -112,24 +112,24 @@ void checkCollision(){
     if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z)) {
       ball.setBounce();
     }
-    if (ball.isCollisionTeamCup(table.getTeamBlue())) {
+    else if (ball.isCollisionTeamCup(table.getTeamBlue())) {
       ball.setBounce();
     }
-    if (ball.isCollisionTeamCup(table.getTeamRed())) {
+    else if (ball.isCollisionTeamCup(table.getTeamRed())) {
       ball.setBounce();
     }
-    if (ball.isInCup(table.getTeamBlue())) {
+    else if (ball.isOut(SIZE_ROOM)) {
+      print("Fin\n");
+      ball = null;
+    }
+    else if (ball.isInTeamCup(table.getTeamRed())) {
       print("In\n");
       ball = null;
     }
-    if (ball.isInCup(table.getTeamRed())) {
+    else if (ball.isInTeamCup(table.getTeamBlue())) {
       print("In\n");
       ball = null;
     }
     print("Running\n");
-    if (ball.isOut(SIZE_ROOM)) {
-      print("Fin\n");
-      ball = null;
-    }
   }  
 }
