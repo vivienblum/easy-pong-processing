@@ -16,6 +16,7 @@ private static final float BASE_CAM_Y = 600;
 
 private float orientation = 0;
 private float hauteur = 0;
+private boolean running = true;
  
 OscP5 osc;
 OscP5 osc2;
@@ -24,6 +25,7 @@ OscMessage m;
 Lights light;
 Table table;
 Room room;
+Splash splash;
 PeasyCam camera;
 Camera cam;
 float centerX, centerY, centerZ;
@@ -49,6 +51,11 @@ void draw() {
 
    if (ball != null) {
      ball.draw();
+   }
+   if(splash != null) {
+     splash.draw();
+   }
+   if(running){
      checkCollision();
      //ball.stop(-380.0,-110,0.0);
    }
@@ -88,6 +95,7 @@ void keyPressed() {
   
   if(key=='b'){
     ball = new Ball(17, 9, 0);//18, 8, 0);
+    running=true;
   }
 }
  
@@ -111,21 +119,11 @@ void oscEvent(OscMessage m) {
 
 void checkCollision(){
   if (ball != null) {
-    //print(ball.getX() + "," + ball.getY() + "," + ball.getZ() + "\n\n");
-    /*if (ball.isInTeamCup(table.getTeamRed())){
-      print("In1\n");
-      //ball.setBounceZ();
-      ball.stop(ball.getX(), ball.getY(), ball.getZ());
-      //ball.setBounceX();
-      //ball = null;
-    }
-    if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z) && !ball.isCollisionTeamCup(table.getTeamRed())){
-        ball.setBounce(table);
-    } 
-    */
-   
+
     if (ball.isInTeamCup(table.getTeamRed())){
       ball.stop(ball.getX(), ball.getY(), ball.getZ());
+      running = false;
+      splash = new Splash(ball.getX(), ball.getY(), ball.getZ());
       print("Gagné!\n");  
     }else
     

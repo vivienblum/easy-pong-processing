@@ -10,10 +10,10 @@ final class Ball {
   private float speedY;
   private float speedZ;
 
-  public Ball(float speedX, float speedY, float speedZ) {
-    this.speedX = speedX;
-    this.speedY = speedY;
-    this.speedZ = speedZ;
+  public Ball(float X, float Y, float Z) {
+      this.speedX = X;
+      this.speedY = Y;
+      this.speedZ = Z;
   }
   
   public boolean isCollisionTable(float profondeur, float hauteur, float largeur) {
@@ -57,34 +57,6 @@ final class Ball {
       return false;
  }
  
- /*protected boolean isInCup(RedCup cup) {   
-   if((x - RAYON > (cup.getPosX() - cup.getRadius())) && (x + RAYON < (cup.getPosX() + cup.getRadius()))) {
-     if(y - RAYON < -(SIZE_Y/2 + cup.getHauteur())) {
-       if((z - RAYON > (cup.getPosZ() - cup.getRadius())) && (z + RAYON < (cup.getPosZ() + cup.getRadius()))) {
-          return true;
-               
-      }
-    }
-   }
-      return false;
- }*/
- 
-/* protected boolean isCollisionCup(RedCup cup){
-   print(ball.getX() + "," + ball.getY() + "," + ball.getZ() + "\n");
-   print(cup.getPosX() + "," + cup.getPosZ() + "," + cup.getHauteur() + "\n\n");
-      if (x - RAYON >= cup.getPosX() + cup.getRadius() && x + RAYON <= -(cup.getPosX() - cup.getRadius())) {
-        print("x");
-        if(y - RAYON <= (SIZE_Y/2 + cup.getHauteur())) {
-          print("y");
-      if (z - RAYON >= cup.getPosZ() + cup.getRadius() && z + RAYON <= -(cup.getPosZ() - cup.getRadius())) {
-        print("z");
-          return true; 
-       }
-     }
-   }
-   return false; 
- }*/
-  
  protected boolean isCollisionRedCup(RedCup cup) {
     if((-(y + RAYON) >= 50) && -(y - RAYON) <= 100 + cup.getHauteur()){
       double distance = Math.sqrt(Math.pow((cup.getPosX() - x), 2) + Math.pow((cup.getPosZ() - z), 2));
@@ -150,13 +122,12 @@ final class Ball {
     speedY = 0;
     speedZ = 0;
     x = x2;
-    y = y2;
+    y = y2+50;
     z = z2;
   }
   
-  protected void incrementTrajectory() {
-    if(speedY != 0) speedY += POIDS;
-    
+  public void incrementTrajectory() {
+    if(speedY != 0) speedY += POIDS; 
     x = x + speedX;
     y = y + speedY;
     z = z + speedZ;
