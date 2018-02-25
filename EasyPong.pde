@@ -50,7 +50,7 @@ void draw() {
    if (ball != null) {
      ball.draw();
      checkCollision();
-     //ball.stop(120.0,-200,0.0);
+     //ball.stop(-380.0,-110,0.0);
    }
 }
  
@@ -87,7 +87,7 @@ void keyPressed() {
   }
   
   if(key=='b'){
-    ball = new Ball(15, 7, 0);
+    ball = new Ball(17, 9, 0);//18, 8, 0);
   }
 }
  
@@ -122,23 +122,21 @@ void checkCollision(){
     if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z) && !ball.isCollisionTeamCup(table.getTeamRed())){
         ball.setBounce(table);
     } 
+    */
+   
     if (ball.isInTeamCup(table.getTeamRed())){
-      print(ball.getX() + "," + ball.getY() + "," + ball.getZ() + "\t");
       ball.stop(ball.getX(), ball.getY(), ball.getZ());
-      print("Gagné!\n"); 
-    }*/
+      print("Gagné!\n");  
+    }else
     
-    if (ball.isCollisionTeamCup(table.getTeamRed())) {
-       print(ball.getX() + "," + ball.getY() + "," + ball.getZ() + "\t");
-       print("Red!\n"); 
+    if(ball.isCollisionTeamCup(table.getTeamRed(), table.getTeamBlue())) {
+       print("Cup!\n");
        ball.setBounceX();
        ball.setBounceZ();
        ball.setBounceY();
-      //ball.speedLow(0.2);
     }
     
     if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z)){
-        print(ball.getX() + "," + ball.getY() + "," + ball.getZ() + "\t");
         ball.setBounceY();
         print("Table!\n");
     }

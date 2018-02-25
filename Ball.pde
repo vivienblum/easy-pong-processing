@@ -28,11 +28,13 @@ final class Ball {
     return false;
   }
   
-  public boolean isCollisionTeamCup(TeamCup teamCup) {
-    for (RedCup cup : teamCup.getCups()) {
+  public boolean isCollisionTeamCup(TeamCup redTeamCup, TeamCup blueTeamCup) {
+    for (RedCup cup : redTeamCup.getCups() ) {
       if (isCollisionRedCup(cup)) return true;
+    }
+    for (RedCup cup : blueTeamCup.getCups() ) {
       if (isCollisionBlueCup(cup)) return true;
-     }
+    }
     return false;
   }
   
@@ -46,11 +48,11 @@ final class Ball {
   }
   
   protected boolean isInCup(RedCup cup) {   
-    if ((x - RAYON > SIZE_X/2) && y - RAYON < -(SIZE_Y/2 + cup.getHauteur()))  {
-      double distance = getDistance(cup.getPosX(), x, cup.getPosZ(), z);
-      if (distance < cup.getRadius()) {
-        return true;
-      }
+    if((-(y + RAYON) >= 50) && -(y - RAYON) <= 100 + cup.getHauteur()){
+        double distance = getDistance(cup.getPosX(), x, cup.getPosZ(), z);
+        if (((distance/6) <= (cup.getRadius()+15))) {
+          return true;
+        }
     }
       return false;
  }
@@ -84,10 +86,10 @@ final class Ball {
  }*/
   
  protected boolean isCollisionRedCup(RedCup cup) {
-    if((-(y + RAYON) >= 100) && -(y - RAYON) <= 100 + cup.getHauteur()){
+    if((-(y + RAYON) >= 50) && -(y - RAYON) <= 100 + cup.getHauteur()){
       double distance = Math.sqrt(Math.pow((cup.getPosX() - x), 2) + Math.pow((cup.getPosZ() - z), 2));
-      if ((distance/5) <= cup.getRadius() + RAYON ) {
-        x = cup.getPosX() + cup.getRadius() + RAYON;
+      if ((distance/6) <= (cup.getRadius() + RAYON)) {
+        x = cup.getPosX() - cup.getRadius() + RAYON;
         y = -200 - RAYON;
         return true;
       }
@@ -96,11 +98,10 @@ final class Ball {
   }
   
    protected boolean isCollisionBlueCup(RedCup cup) {
-    if((-(y + RAYON) >= 100) && -(y - RAYON) <= 100 + cup.getHauteur()){
-      double distance = Math.sqrt(Math.pow((-cup.getPosX() - x), 2) + Math.pow((-cup.getPosZ() - z), 2));
-      print(distance+"\n");
-      if ((distance/5) <= (cup.getRadius() + RAYON )) {
-        x = -cup.getPosX() -cup.getRadius() + RAYON;
+    if((-(y + RAYON) >= 30) && -(y - RAYON) <= 100 + cup.getHauteur()){
+      double distance = Math.sqrt(Math.pow((-cup.getPosX() - x), 2) + Math.pow((cup.getPosZ() - z), 2));
+      if ((distance/5) <= (cup.getRadius() + RAYON)) {
+        x = -cup.getPosX() + cup.getRadius() + RAYON;
         y = -200 - RAYON;
         return true;
       }
@@ -109,7 +110,7 @@ final class Ball {
   }
   
   protected double getDistance(float xA, float xB, float yA, float yB) {
-    return Math.sqrt(Math.pow((xA - xB), 2) + Math.pow((yA - yB), 2));
+    return sqrt(pow((xA - xB), 2) + pow((yA - yB), 2));
   }
   
   public boolean isOut(float size) {
@@ -120,15 +121,18 @@ final class Ball {
   }
   
   public void setBounceX() {
-    speedX *= -0.7;
+    speedX/=1.5;
+    speedX *= -1;
   }
 
   public void setBounceZ() {  
-    speedZ *= -0.7;
+    speedZ/=1.2;
+    speedZ *= -1;
   }
   
   public void setBounceY() {  
-    speedY *= -0.5;
+    speedY = speedY/2;
+    speedY= -speedY;
   }
   
   public float getX(){
@@ -151,7 +155,7 @@ final class Ball {
   }
   
   protected void incrementTrajectory() {
-    speedY += POIDS;
+    if(speedY != 0) speedY += POIDS;
     
     x = x + speedX;
     y = y + speedY;
