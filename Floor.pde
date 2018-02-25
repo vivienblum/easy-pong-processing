@@ -19,6 +19,7 @@ final class Room{
     vertex(0,0,-SIZE_ROOM,1200,1200);  
     endShape();
     
+    //Mur
     beginShape();
     texture(wall);
     vertex(0,0,0,1200,0);
@@ -52,5 +53,6 @@ final class Room{
     endShape();
         
     translate(-SIZE_ROOM/2,-SIZE_PIED+(SIZE_ROOM/2),-SIZE_ROOM/2);
+
   }
 }

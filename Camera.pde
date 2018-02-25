@@ -79,7 +79,21 @@ final class Camera{
         }        
       }
     }
+    
     camera(posX, posY, posZ, eyeX, eyeY, eyeZ, 0, 1, 0);
+    pushMatrix();
+    background(145);
+    fill(2550,0,0);
+    rotateY(-PI/2);
+    textSize(300);
+    text("EASY PONG", -1500,-900,-1750);
+    popMatrix();
+    pushMatrix();
+    fill(0);
+    rotateY(-PI/2);
+    textSize(100);
+    text("SCORE " + SCORE, 1000,-950,-1500);
+    popMatrix();
     
   }
   

@@ -17,6 +17,7 @@ private static final float BASE_CAM_Y = 600;
 private float orientation = 0;
 private float hauteur = 0;
 private boolean running = true;
+private static int SCORE;
  
 OscP5 osc;
 OscP5 osc2;
@@ -48,16 +49,16 @@ void draw() {
    pushMatrix();
    red.draw();
    popMatrix();
-
+   
    if (ball != null) {
      ball.draw();
    }
    if(splash != null) {
      splash.draw();
    }
+
    if(running){
      checkCollision();
-     //ball.stop(-380.0,-110,0.0);
    }
 }
  
@@ -65,6 +66,8 @@ void draw() {
 void setup() { 
   osc = new OscP5(this, 8000);
   addr = new NetAddress("192.168.1.54", 8000);  
+  
+  SCORE = 0;
   noStroke();
   
   centerX = (width/2) - (SIZE_X/2);
@@ -122,13 +125,12 @@ void checkCollision(){
 
     if (ball.isInTeamCup(table.getTeamRed())){
       ball.stop(ball.getX(), ball.getY(), ball.getZ());
-      running = false;
+      running = false; 
+      SCORE+=1;
       splash = new Splash(ball.getX(), ball.getY(), ball.getZ());
-      print("Gagné!\n");  
     }else
     
     if(ball.isCollisionTeamCup(table.getTeamRed(), table.getTeamBlue())) {
-       print("Cup!\n");
        ball.setBounceX();
        ball.setBounceZ();
        ball.setBounceY();
@@ -136,7 +138,6 @@ void checkCollision(){
     
     if (ball.isCollisionTable(SIZE_X, SIZE_Y, SIZE_Z)){
         ball.setBounceY();
-        print("Table!\n");
     }
   }  
 }
