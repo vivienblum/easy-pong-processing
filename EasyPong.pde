@@ -97,26 +97,27 @@ void keyPressed() {
   }
   
   if(key=='b'){
-    ball = new Ball(17, 9, 0);//18, 8, 0);
+    ball = new Ball(17, 9, 0);
     running=true;
   }
 }
  
 void oscEvent(OscMessage m) {
   String[] list = split(m+"", "|");
-  print(m +"\n") ;
   hauteur = 5;
   if(list[1].contains("orientation")){
-    print(m +"\n") ;
     String[] data = split(list[1]+"", ':');
     orientation = Float.parseFloat(data[1])/2;
-    if(Float.parseFloat(data[2])>30){
+    if(Float.parseFloat(data[2])>=50){
+        print(data[2]);
         hauteur = 10;
     }
   }
   if(list[1].contains("vitesse")){
      String[] data = split(list[1]+"", ':');
-     if(ball==null)ball = new Ball(Float.parseFloat(data[1])-10, hauteur, orientation);
+     float vitesse = Float.parseFloat(data[1]) - 5;
+     if(ball.getSpeedX() < vitesse) ball = new Ball(vitesse, hauteur, -orientation);
+     running=true;
   }
 }
 

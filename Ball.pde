@@ -2,7 +2,7 @@ final class Ball {
   private static final float RAYON = 28;
   private static final float POIDS = 0.4;
   
-  private float x = -100;
+  private float x = -300;
   private float y = -600;
   private float z = 0;  
 
@@ -50,7 +50,7 @@ final class Ball {
   protected boolean isInCup(RedCup cup) {   
     if((-(y + RAYON) >= 50) && -(y - RAYON) <= 100 + cup.getHauteur()){
         double distance = getDistance(cup.getPosX(), x, cup.getPosZ(), z);
-        if (((distance/6) <= (cup.getRadius()+15))) {
+        if (((distance/5) <= (cup.getRadius()+12))) {
           return true;
         }
     }
@@ -60,7 +60,7 @@ final class Ball {
  protected boolean isCollisionRedCup(RedCup cup) {
     if((-(y + RAYON) >= 50) && -(y - RAYON) <= 100 + cup.getHauteur()){
       double distance = Math.sqrt(Math.pow((cup.getPosX() - x), 2) + Math.pow((cup.getPosZ() - z), 2));
-      if ((distance/6) <= (cup.getRadius() + RAYON)) {
+      if ((distance/5) <= (cup.getRadius() + RAYON + 20)) {
         x = cup.getPosX() - cup.getRadius() + RAYON;
         y = -200 - RAYON;
         return true;
@@ -116,6 +116,11 @@ final class Ball {
   public float getZ(){
     return z;
   }
+  
+  public float getSpeedX(){
+    return speedX;
+  }
+  
   
   public void stop(float x2, float y2, float z2) {
     speedX = 0;
